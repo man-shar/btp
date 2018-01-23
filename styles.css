@@ -1,11 +1,128 @@
-rect, circle {
-  fill: transparent;
-  stroke: steelblue;
-  stroke-width: 1;
+body {
+  margin: 0;
+  padding: 0;
+  color: #3a3a3a;
 }
 
-.anchor {
-  fill: orange;
-  fill-opacity: 0.7;
-  stroke: orange;
+* {
+  white-space: nowrap;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */ 
+  box-sizing: border-box; /* Opera/IE 8+ */ 
 }
+
+#main-container {
+  font-size: 0;
+  margin: 0 auto;
+  background-color: #F5F5F5;
+}
+
+#chart-container, #things {
+  font-size: 12px;
+  display: inline-block;
+  overflow-x: auto;
+  vertical-align:top;
+}
+
+#chart-container {
+  width: 74%;
+  background-color: white;
+  min-width: 300px;
+  position: relative;
+}
+
+#things {
+  font-family: "Lato";
+  width: 25%;
+  min-width: 200px;
+  text-align: center;
+}
+
+.things-label {
+  background-color: steelblue;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  height: 20px;
+  position: sticky;
+  top: 0;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+#data-drop-container, #dimensions-container {
+  
+}
+
+#data-drop-container > #data-drop-placeholder-text {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#data-drop-container > #data-drop-placeholder-text:hover {
+  opacity: 1;
+}
+
+#data-drop-container {
+  height: 200px;
+  overflow: auto;
+}
+
+#data-drop-placeholder-text {
+  font-family: "Lato";
+  font-size: 25px;
+  color: #3a3a3a;
+}
+
+#dimensions-container {
+  height: 200px;
+  overflow: auto;
+  margin-top: 20px;
+}
+
+#tooltip {
+  font-family: "Lato";
+  display: none;
+  position: absolute;
+  padding: 10px;
+  background-color: #F5F5F5;
+  border: 1px solid steelblue;
+  font-size: 14px;
+}
+
+.tooltip-label {
+  color: #3a3a3a;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.tooltip-label p {
+  width: 50px;
+  display: inline-table;
+  overflow: hidden;
+}
+
+#data-table-display {
+  padding: 10px;
+  font-size: 14px;
+}
+
+#data-table-display tr {
+  border-bottom: 1px solid #3a3a3a50;
+  text-align: left;
+}
+
+#data-table-display th, #data-table-display td {
+  padding: 5px;
+  cursor: pointer;
+}
+
+#data-table-display th:hover {
+  background-color: #3a3a3a25;
+}
+
+#data-table-display th {
+  color: #3a3a3a;
+  font-style: italic;
+}
+
+table { border-collapse: collapse; }

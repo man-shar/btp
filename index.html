@@ -3,16 +3,37 @@
   <meta charset="utf-8"/>
   <script type="text/javascript" src="d3.js"></script>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="shapeStyles.css">
 </head>
 <body>
-  <div id="chart-container">
-    <svg width="900" height="600" id="chart"></svg>
+  <div id="main-container">
+    <div id="things">
+      <div id="data-drop-container">
+        <input type="file" name="data-file" id="selectedFile" style="display: none;">
+        <div class="things-label">
+          Data
+        </div>
+        <p id="data-drop-placeholder-text">Drag/Upload<br> your data here</p>
+        <div id="data-table-display" style="display: none;"></div>
+      </div>
+      <div id="dimensions-container">
+        <div class="things-label">Steps</div>
+      </div>
+    </div>
+    <div id="chart-container">
+        <div id="tooltip"></div>
+        <svg width="900" height="600" id="chart"></svg>
+    </div>
   </div>
 </body>
 <script type="text/javascript">
   var log = console.log;
 </script>
 <script type="text/javascript" src="basics.js"></script>
+<script type="text/javascript" src="VizData.js"></script>
+<script type="text/javascript" src="dataDrop.js"></script>
+<script type="text/javascript" src="Tooltip.js"></script>
+<script type="text/javascript" src="Shape.js"></script>
 <script type="text/javascript" src="AnchorSet.js"></script>
 <script type="text/javascript" src="Rect.js"></script>
 <script type="text/javascript" src="Circle.js"></script>
