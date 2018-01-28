@@ -1,5 +1,5 @@
-function Shape(name, anchorList, shapeNumber) {
-  this.name = name;
+function Shape(type, anchorList, shapeNumber) {
+  this.type = type;
   this.parent;
   this.el;
   this.g;
@@ -11,13 +11,15 @@ function Shape(name, anchorList, shapeNumber) {
   this.anchorLocations;
   this.tooltip = new Tooltip();
   this.shapeNumber = SHAPE_COUNTER;
+  this.mapping = {};
 }
 
-Shape.prototype.initiate = function(svg) {
+Shape.prototype.createInitial = function(svg, initial=false) {
   this.parent = svg;
   this.g = d3.select(this.parent)
     .append("g")
-    .attr("id", "shape-container-" + SHAPE_COUNTER)
+    .attr("class", ((initial ? "initial-shape-container " : "") + "shape-container"))
+    .attr("id", ((initial ? "" : "layer-") + "shape-container-" + SHAPE_COUNTER))
     .node();
 
   this.g.addEventListener("mouseenter", function() {
@@ -39,8 +41,8 @@ Shape.prototype.initiate = function(svg) {
   this.g.shape = this;
 
   this.el = d3.select(this.g)
-    .append(this.name)
-    .attr("class", "shape-" + this.name)
+    .append(this.type)
+    .attr("class", ((initial ? "initial-shape " : "") + "shape shape-" + this.type))
     .attr("id", "shape-" + SHAPE_COUNTER)
     .node();
 
@@ -53,4 +55,23 @@ Shape.prototype.initiate = function(svg) {
   this.anchorLocations = new AnchorSet(this.anchorList, this.anchorContainer);
 
   this.anchorLocations.create();
+
+  for (dimension in this.dimensions) {
+    this.mapping[dimension] = {
+      "html": "",
+      "text": ""
+    }
+  };
+};
+
+Shape.prototype.mapDimensions = function(dropEvent) {
+  var dim = dropEvent.target.parentElement.dimension;
+
+  if(vizData.current !== "")
+  {
+    dropEvent.target.appendChild(vizData.current.cloneNode(true));
+  }
+
+  this.mapping[dim]["html"] = dropEvent.target.innerHTML;
+  this.mapping[dim]["text"] = dropEvent.target.innerText;
 };

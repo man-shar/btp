@@ -12,7 +12,8 @@ function Rect() {
   });
   this.dimensions = {
     "width": "",
-    "height": ""
+    "height": "",
+    "x-loc": ""
   };
 }
 
@@ -40,3 +41,22 @@ Rect.prototype.update = function(svg) {
     "left-middle": [0, this.dimensions["height"] / 2]
   });
 };
+
+Rect.prototype.createNew = function(el, layer, i) {
+  this.boundData = el.__data__;
+  this.boundData["index"] = i;
+
+  var x = d3.scaleLinear()
+    .domain(vizData.dataTypes[this.mapping["x-loc"]["text"]]["domain"])
+    .range([0, WIDTH]);
+
+  var y = d3.scaleLinear()
+    .domain(vizData.dataTypes[this.mapping["height"]["text"]]["domain"])
+    .range([0, HEIGHT]);
+
+  d3.select(el)
+    .attr("x", (this.mapping["width"]["text"] ? +this.mapping["width"]["text"] : 50) * i)
+    .attr("y", HEIGHT - y(+this.boundData[this.mapping["height"]["text"]]))
+    .attr("width", (this.mapping["width"]["text"] ? +this.mapping["width"]["text"] : 50))
+    .attr("height", y(+this.boundData[this.mapping["height"]["text"]]));
+}

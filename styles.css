@@ -36,6 +36,7 @@ body {
   width: 25%;
   min-width: 200px;
   text-align: center;
+  position: relative;
 }
 
 .things-label {
@@ -45,6 +46,7 @@ body {
   font-size: 16px;
   height: 20px;
   position: sticky;
+  left: 0;
   top: 0;
   box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
@@ -86,43 +88,57 @@ body {
   padding: 10px;
   background-color: #F5F5F5;
   border: 1px solid steelblue;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .tooltip-label {
   color: #3a3a3a;
-  font-style: italic;
-  font-weight: bold;
 }
 
 .tooltip-label p {
   width: 50px;
   display: inline-table;
-  overflow: hidden;
+}
+
+.column-drop-div {
+  display: inline-block;
+  min-width: 100px;
+  border: 0px;
+  padding: 2px 5px;
+  background: #fff;
+  height: 2em;
+  border-bottom: 1px dashed #3a3a3a50;
+  -moz-appearance: textfield-multiline;
+  -webkit-appearance: textarea;
+  border: 1px solid gray;
+  border-radius: 2px;
+  vertical-align: middle;
 }
 
 #data-table-display {
   padding: 10px;
-  font-size: 14px;
-}
-
-#data-table-display tr {
-  border-bottom: 1px solid #3a3a3a50;
-  text-align: left;
-}
-
-#data-table-display th, #data-table-display td {
-  padding: 5px;
-  cursor: pointer;
-}
-
-#data-table-display th:hover {
-  background-color: #3a3a3a25;
+  font-size: 12px;
 }
 
 #data-table-display th {
-  color: #3a3a3a;
+  border: 1px solid #3a3a3a50;
+  background-color: steelblue;
+}
+
+#data-table-display td, #data-table-display th {
+  border-left: 1px solid #3a3a3a50;
+}
+
+.column-name, #data-table-display td > div {
+  padding: 2px 5px;
+}
+
+.column-name {
+  cursor: pointer;
+  color: white;
+  background-color: steelblue;
   font-style: italic;
+  display: inline-block;
 }
 
 table { border-collapse: collapse; }

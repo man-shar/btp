@@ -3,55 +3,55 @@ function Tooltip() {
 }
 
 Tooltip.prototype.toggle = function(clickEvent) {
+  var shape = this;
   var tooltip = document.getElementById('tooltip');
 
   if(tooltip.shape) {
-    if((tooltip.shape.shapeNumber == this.shape.shapeNumber) && this.shape.tooltip.visible == 1) {
+    if((tooltip.shape.shapeNumber == shape.shape.shapeNumber) && shape.shape.tooltip.visible == 1) {
       tooltip.style.display = "none";
-      this.shape.tooltip.visible = 0;
+      shape.shape.tooltip.visible = 0;
       return;
     }
 
-    if((tooltip.shape.shapeNumber == this.shape.shapeNumber) && this.shape.tooltip.visible == 0) {
+    if((tooltip.shape.shapeNumber == shape.shape.shapeNumber) && shape.shape.tooltip.visible == 0) {
       tooltip.style.display = "inline-block";
-      this.shape.tooltip.visible = 1;
+      shape.shape.tooltip.visible = 1;
       return;
     }
   }
 
-  function truncateText(text) {
-    var truncated = text;
-
-    if (truncated.length > 6) {
-        truncated = truncated.substr(0,6) + '...';
-    }
-    return truncated;
-  }
-
-  tooltip.shape = this.shape;
+  tooltip.shape = shape.shape;
   tooltip.innerHTML = "";
-  for (var dimension in this.shape.dimensions) {
+  for (var dimension in shape.shape.dimensions) {
     var div = tooltip
       .appendChild(document.createElement("div"));
 
     div.dimension = dimension;
+    div.className = "tooltip-label"
 
     var label = div
       .appendChild(document.createElement("p"))
 
-    div.className = "tooltip-label"
+    label.textContent = toSentenceCase(truncateText(dimension) + " : ");
 
-    label.textContent = truncateText(dimension) + " : ";
+    var input = div.appendChild(document.createElement("div"));
 
-    var input = div.appendChild(document.createElement("input"));
+    input.className = "column-drop-div";
+    input.contentEditable = "true";
+    input.innerHTML = shape.shape.mapping[dimension]["html"];
 
-    input.type = "text";
-    input.style.width = "50px";
+    input.addEventListener("input", function(e) {
+      shape.shape.mapDimensions(e);
+    })
+
+    input.addEventListener("drop", function(e) {
+      shape.shape.mapDimensions(e);
+    });
   }
 
   tooltip.style.display = "inline-block"
-  this.shape.tooltip.visible = 1;
-  var pos = this.getBBox();
+  shape.shape.tooltip.visible = 1;
+  var pos = shape.getBBox();
 
   tooltip.style.left = (pos.x + pos.width + 20) + "px";
   tooltip.style.top = (pos.y) + "px";

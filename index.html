@@ -10,14 +10,15 @@
     <div id="things">
       <div id="data-drop-container">
         <input type="file" name="data-file" id="selectedFile" style="display: none;">
-        <div class="things-label">
+        <div class="things-label" draggable="true">
           Data
         </div>
+        <div id="active-column" style="display: none;position: absolute;"></div>
         <p id="data-drop-placeholder-text">Drag/Upload<br> your data here</p>
         <div id="data-table-display" style="display: none;"></div>
       </div>
       <div id="dimensions-container">
-        <div class="things-label">Steps</div>
+        <div class="things-label" draggable="true">Steps</div>
       </div>
     </div>
     <div id="chart-container">
@@ -29,12 +30,13 @@
 <script type="text/javascript">
   var log = console.log;
 </script>
-<script type="text/javascript" src="basics.js"></script>
+<script type="text/javascript" src="Viz.js"></script>
+<script type="text/javascript" src="Layer.js"></script>
 <script type="text/javascript" src="VizData.js"></script>
-<script type="text/javascript" src="dataDrop.js"></script>
+<script type="text/javascript" src="events.js"></script>
 <script type="text/javascript" src="Tooltip.js"></script>
 <script type="text/javascript" src="Shape.js"></script>
 <script type="text/javascript" src="AnchorSet.js"></script>
 <script type="text/javascript" src="Rect.js"></script>
 <script type="text/javascript" src="Circle.js"></script>
-<script type="text/javascript" src="events.js"></script>
+<script type="text/javascript" src="basics.js"></script>
